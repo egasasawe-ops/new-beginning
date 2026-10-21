@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Loan Application | Momo MTN</title>
+    <meta name="description" content="Apply for a Momo MTN digital loan in three simple steps. Secure, fast and available across supported MTN MoMo countries.">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .step-pane {
+            display: none;
+        }
+
+        .step-pane.active {
+            display: block;
+            animation: fadeIn .25s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pane-head {
+            margin-bottom: 24px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .pane-head h2 {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .pane-head p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .apply-wrap {
+            max-width: 780px;
+            margin: auto;
+        }
+
+        .secured {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .secured i {
+            color: var(--success);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <img src="assets/images/logo/logo.png" alt="Momo MTN">
+
+            <span>
+            Momo<span class="yellow">MTN</span>
+        </span>
+
+        </a>
+
+
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+
+        <ul class="nav-links" id="navLinks">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="index.html#features">Features</a>
+            </li>
+
+            <li>
+                <a href="index.html#calculator">Loan Calculator</a>
+            </li>
+
+            <li>
+                <a href="index.html#countries">Countries</a>
+            </li>
+
+            <li>
+                <a href="index.html#contact">Contact</a>
+            </li>
+
+            <li>
+                <a href="eligibility.html" class="nav-apply">
+                Apply Now
+            </a>
+            </li>
+
+        </ul>
+
+    </header>
+
+
+    <!-- =========================================================
+     PAGE HERO
+========================================================= -->
+
+    <section class="page-hero">
+
+        <h1>
+            Loan <span>Application</span>
+        </h1>
+
+        <p>
+            Complete the three steps below. Your information is used only to review this application.
+        </p>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fas fa-angle-right"></i>
+            <a href="eligibility.html">Eligibility</a>
+            <i class="fas fa-angle-right"></i>
+            <a href="login.html">Login</a>
+            <i class="fas fa-angle-right"></i>
+            <span>Application</span>
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+     APPLICATION FORM
+========================================================= -->
+
+    <section>
+
+        <div class="apply-wrap">
+
+            <div class="steps" id="stepIndicator">
+
+                <div class="step active" data-step="1">
+                    <span class="num">1</span> Personal Details
+                </div>
+
+                <div class="step" data-step="2">
+                    <span class="num">2</span> Loan Details
+                </div>
+
+                <div class="step" data-step="3">
+                    <span class="num">3</span> Review &amp; Submit
+                </div>
+
+            </div>
+
+
+            <div class="card card-shadow">
+
+                <div class="alert alert-info hidden" id="limitNotice">
+
+                    <i class="fas fa-circle-info"></i>
+
+                    <span id="limitNoticeText"></span>
+
+                </div>
+
+
+                <form id="applicationForm" novalidate>
+
+                    <!-- =====================================
+                     STEP 1 - PERSONAL DETAILS
+                ====================================== -->
+
+                    <div class="step-pane active" data-pane="1">
+
+                        <div class="pane-head">
+
+                            <h2>
+                                Personal Details
+                            </h2>
+
+                            <p>
+                                Enter your details exactly as they appear on your national ID.
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="fullName">
+                            Full Name
+                        </label>
+
+                            <input type="text" id="fullName" placeholder="e.g. Kwame Mensah" autocomplete="name">
+
+                            <span class="error">
+                            Please enter your full name.
+                        </span>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                Email Address
+                            </label>
+
+                                <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+
+                                <span class="error">
+                                Enter a valid email address.
+                            </span>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="dob">
+                                Date of Birth
+                            </label>
+
+                                <input type="date" id="dob" autocomplete="bday">
+
+                                <span class="error">
+                                You must be 18 years or older.
+                            </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="phone">
+                                MTN MoMo Number
+                            </label>
+
+                                <input type="tel" id="phone" placeholder="e.g. +233 24 000 0000" autocomplete="tel">
+
+                                <span class="error">
+                                Enter a valid MoMo number.
+                            </span>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="country">
+                                Country
+                            </label>
+
+                                <select id="country">
+
+                                <option value="">Select your country</option>
+
+                                <option value="Ghana">Ghana</option>
+                                <option value="Uganda">Uganda</option>
+                                <option value="Zambia">Zambia</option>
+                                <option value="Cameroon">Cameroon</option>
+                                <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                                <option value="Guinea">Guinea</option>
+                                <option value="Benin">Benin</option>
+                                <option value="South Sudan">South Sudan</option>
+
+                            </select>
+
+                                <span class="error">
+                                Please select your country.
+                            </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="nationalId">
+                            National ID / Passport Number
+                        </label>
+
+                            <input type="text" id="nationalId" placeholder="e.g. GHA-123456789-0">
+
+                            <span class="error">
+                            Enter your ID or passport number.
+                        </span>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="employment">
+                                Employment Status
+                            </label>
+
+                                <select id="employment">
+
+                                <option value="">Select status</option>
+
+                                <option value="Employed">Employed</option>
+                                <option value="Self-employed">Self-employed</option>
+                                <option value="Business owner">Business owner</option>
+                                <option value="Student">Student</option>
+
+                            </select>
+
+                                <span class="error">
+                                Please select your employment status.
+                            </span>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="income">
+                                Monthly Income (USD)
+                            </label>
+
+                                <input type="number" id="income" placeholder="e.g. 450" min="1" step="1" inputmode="numeric">
+
+                                <span class="error">
+                                Enter your monthly income.
+                            </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =====================================
+                     STEP 2 - LOAN DETAILS
+                ====================================== -->
+
+                    <div class="step-pane" data-pane="2">
+
+                        <div class="pane-head">
+
+                            <h2>
+                                Loan Details
+                            </h2>
+
+                            <p>
+                                Choose how much you need and how you would like to repay it.
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="amount">
+                                Loan Amount (USD)
+                            </label>
+
+                                <input type="number" id="amount" placeholder="e.g. 500" min="50" step="10" inputmode="numeric">
+
+                                <span class="hint">
+                                Between $50 and $5,000.
+                            </span>
+
+                                <span class="error">
+                                Enter a valid loan amount.
+                            </span>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="term">
+                                Repayment Period
+                            </label>
+
+                                <select id="term">
+
+                                <option value="1">1 Month</option>
+                                <option value="3">3 Months</option>
+                                <option value="6" selected>6 Months</option>
+                                <option value="12">12 Months</option>
+
+                            </select>
+
+                                <span class="error">
+                                Please select a repayment period.
+                            </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="purpose">
+                            Purpose of Loan
+                        </label>
+
+                            <select id="purpose">
+
+                            <option value="">Select a purpose</option>
+
+                            <option value="Business">Business</option>
+                            <option value="Education">Education</option>
+                            <option value="Medical">Medical</option>
+                            <option value="Home improvement">Home improvement</option>
+                            <option value="Emergency">Emergency</option>
+                            <option value="Other">Other</option>
+
+                        </select>
+
+                            <span class="error">
+                            Please select the purpose of the loan.
+                        </span>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="momoNumber">
+                            MoMo Number for Disbursement
+                        </label>
+
+                            <input type="tel" id="momoNumber" placeholder="e.g. +233 24 000 0000">
+
+                            <span class="hint">
+                            Funds are sent to this MTN Mobile Money number.
+                        </span>
+
+                            <span class="error">
+                            Enter a valid MoMo number.
+                        </span>
+
+                        </div>
+
+
+                        <div class="lock-note">
+
+                            <i class="fas fa-percent"></i>
+
+                            <span>
+                            Interest rate is fixed at <strong>10%</strong> for the full repayment period. No hidden charges.
+                        </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =====================================
+                     STEP 3 - REVIEW
+                ====================================== -->
+
+                    <div class="step-pane" data-pane="3">
+
+                        <div class="pane-head">
+
+                            <h2>
+                                Review &amp; Submit
+                            </h2>
+
+                            <p>
+                                Check your details carefully before submitting your application.
+                            </p>
+
+                        </div>
+
+
+                        <div class="review" id="reviewBox"></div>
+
+
+                        <label class="checkbox" id="termsLabel">
+
+                        <input type="checkbox" id="terms">
+
+                        <span>
+                            I confirm that the information provided is accurate and I agree to the terms and conditions of Momo MTN.
+                        </span>
+
+                    </label>
+
+                        <span class="error" id="termsError" style="display:none; margin-top:8px; color:var(--danger); font-size:12px; font-weight:700;">
+                        Please accept the terms to continue.
+                    </span>
+
+                    </div>
+
+
+                    <!-- =====================================
+                     ACTIONS
+                ====================================== -->
+
+                    <div class="form-actions">
+
+                        <button type="button" class="btn btn-outline hidden" id="backBtn">
+                        <i class="fas fa-arrow-left"></i>
+                        Back
+                    </button>
+
+                        <button type="button" class="btn btn-primary" id="nextBtn">
+                        Continue
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                        <button type="submit" class="btn btn-primary hidden" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Application
+                    </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <p class="secured">
+                <i class="fas fa-lock"></i> Your information is transmitted securely and never shared with third parties.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+     FOOTER
+========================================================= -->
+
+    <footer id="contact">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>Momo MTN</h3>
+
+                <p>
+                    Digital financial services designed to make access to finance simple, convenient and secure.
+                </p>
+
+                <div class="socials">
+
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h3>Quick Links</h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#calculator">Loan Calculator</a></li>
+                    <li><a href="index.html#countries">Countries</a></li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Services</h3>
+
+                <ul>
+
+                    <li>Loan Applications</li>
+                    <li>Repayments</li>
+                    <li>Financial Transfers</li>
+                    <li>Eligibility Checking</li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Contact</h3>
+
+                <ul>
+
+                    <li><i class="fas fa-envelope"></i> support@example.com</li>
+                    <li><i class="fas fa-phone"></i> +000 000 000 000</li>
+                    <li><i class="fas fa-clock"></i> 24/7 Support</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Momo MTN. All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+     SCRIPTS
+========================================================= -->
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/telegram.js"></script>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var MIN_AMOUNT = 50;
+            var MAX_AMOUNT = 5000;
+            var INTEREST = 10;
+
+            var form = document.getElementById('applicationForm');
+            var panes = document.querySelectorAll('.step-pane');
+            var stepItems = document.querySelectorAll('.step');
+            var backBtn = document.getElementById('backBtn');
+            var nextBtn = document.getElementById('nextBtn');
+            var submitBtn = document.getElementById('submitBtn');
+            var reviewBox = document.getElementById('reviewBox');
+            var terms = document.getElementById('terms');
+            var termsLabel = document.getElementById('termsLabel');
+            var termsError = document.getElementById('termsError');
+            var limitNotice = document.getElementById('limitNotice');
+            var limitNoticeText = document.getElementById('limitNoticeText');
+
+            var money = window.Momo.money;
+            var saved = window.Momo.read() || {};
+            var currentStep = 1;
+
+            /* ---------------------------------------------
+               FIELD HELPERS
+            --------------------------------------------- */
+
+            function field(id) {
+                return document.getElementById(id);
+            }
+
+            function setInvalid(input) {
+                var group = input.closest('.form-group');
+
+                if (group) {
+                    group.classList.add('invalid');
+                }
+            }
+
+            function clearErrors(scope) {
+                Array.prototype.forEach.call(scope.querySelectorAll('.form-group'), function (group) {
+                    group.classList.remove('invalid');
+                });
+            }
+
+            function ageFrom(value) {
+                if (!value) {
+                    return NaN;
+                }
+
+                var dob = new Date(value);
+
+                if (isNaN(dob.getTime())) {
+                    return NaN;
+                }
+
+                var today = new Date();
+                var age = today.getFullYear() - dob.getFullYear();
+                var monthDiff = today.getMonth() - dob.getMonth();
+
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                    age--;
+                }
+
+                return age;
+            }
+
+            function isPhone(value) {
+                return /^\+?\d{9,15}$/.test(String(value).replace(/[\s-]/g, ''));
+            }
+
+            /* ---------------------------------------------
+               STEP VALIDATION
+            --------------------------------------------- */
+
+            function validateStep(step) {
+                var pane = document.querySelector('.step-pane[data-pane="' + step + '"]');
+
+                clearErrors(pane);
+
+                var valid = true;
+                var firstInvalid = null;
+
+                function fail(input) {
+                    setInvalid(input);
+                    valid = false;
+
+                    if (!firstInvalid) {
+                        firstInvalid = input;
+                    }
+                }
+
+                if (step === 1) {
+                    if (field('fullName').value.trim().length < 3) {
+                        fail(field('fullName'));
+                    }
+
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field('email').value.trim())) {
+                        fail(field('email'));
+                    }
+
+                    if (!(ageFrom(field('dob').value) >= 18)) {
+                        fail(field('dob'));
+                    }
+
+                    if (!isPhone(field('phone').value)) {
+                        fail(field('phone'));
+                    }
+
+                    if (!field('country').value) {
+                        fail(field('country'));
+                    }
+
+                    if (field('nationalId').value.trim().length < 5) {
+                        fail(field('nationalId'));
+                    }
+
+                    if (!field('employment').value) {
+                        fail(field('employment'));
+                    }
+
+                    var income = parseFloat(field('income').value);
+
+                    if (isNaN(income) || income < 100) {
+                        fail(field('income'));
+                    }
+                }
+
+                if (step === 2) {
+                    var amount = parseFloat(field('amount').value);
+
+                    if (isNaN(amount) || amount < MIN_AMOUNT || amount > MAX_AMOUNT) {
+                        fail(field('amount'));
+                    }
+
+                    if (!field('term').value) {
+                        fail(field('term'));
+                    }
+
+                    if (!field('purpose').value) {
+                        fail(field('purpose'));
+                    }
+
+                    if (!isPhone(field('momoNumber').value)) {
+                        fail(field('momoNumber'));
+                    }
+                }
+
+                if (!valid && firstInvalid) {
+                    firstInvalid.focus();
+                }
+
+                return valid;
+            }
+
+            /* ---------------------------------------------
+               STEP NAVIGATION
+            --------------------------------------------- */
+
+            function paintSteps() {
+                Array.prototype.forEach.call(panes, function (pane) {
+                    pane.classList.toggle('active', Number(pane.dataset.pane) === currentStep);
+                });
+
+                Array.prototype.forEach.call(stepItems, function (item) {
+                    var step = Number(item.dataset.step);
+
+                    item.classList.toggle('active', step === currentStep);
+                    item.classList.toggle('done', step < currentStep);
+                });
+
+                backBtn.classList.toggle('hidden', currentStep === 1);
+                nextBtn.classList.toggle('hidden', currentStep === 3);
+                submitBtn.classList.toggle('hidden', currentStep !== 3);
+            }
+
+            function goToStep(step) {
+                currentStep = step;
+
+                if (currentStep === 3) {
+                    buildReview();
+                }
+
+                paintSteps();
+
+                window.scrollTo({
+                    top: form.closest('section').offsetTop - 90,
+                    behavior: 'smooth'
+                });
+            }
+
+            nextBtn.addEventListener('click', function () {
+                if (validateStep(currentStep)) {
+                    goToStep(currentStep + 1);
+                }
+            });
+
+            backBtn.addEventListener('click', function () {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+
+            /* ---------------------------------------------
+               REVIEW SUMMARY
+            --------------------------------------------- */
+
+            function readForm() {
+                return {
+                    fullName: field('fullName').value.trim(),
+                    email: field('email').value.trim(),
+                    dob: field('dob').value,
+                    phone: field('phone').value.trim(),
+                    country: field('country').value,
+                    nationalId: field('nationalId').value.trim(),
+                    employment: field('employment').value,
+                    income: parseFloat(field('income').value),
+                    amount: parseFloat(field('amount').value),
+                    term: parseInt(field('term').value, 10),
+                    purpose: field('purpose').value,
+                    momoNumber: field('momoNumber').value.trim()
+                };
+            }
+
+            function addReviewRow(label, value) {
+                var row = document.createElement('div');
+                row.className = 'review-row';
+
+                var labelEl = document.createElement('span');
+                labelEl.className = 'label';
+                labelEl.textContent = label;
+
+                var valueEl = document.createElement('span');
+                valueEl.className = 'value';
+                valueEl.textContent = value;
+
+                row.appendChild(labelEl);
+                row.appendChild(valueEl);
+                reviewBox.appendChild(row);
+            }
+
+            function buildReview() {
+                var data = readForm();
+                var total = data.amount + (data.amount * INTEREST / 100);
+                var monthly = total / data.term;
+
+                reviewBox.innerHTML = '';
+
+                addReviewRow('Full Name', data.fullName);
+                addReviewRow('Email', data.email);
+                addReviewRow('Date of Birth', data.dob);
+                addReviewRow('MoMo Number', data.phone);
+                addReviewRow('Country', data.country);
+                addReviewRow('National ID', data.nationalId);
+                addReviewRow('Employment', data.employment);
+                addReviewRow('Monthly Income', money(data.income));
+                addReviewRow('Loan Amount', money(data.amount));
+                addReviewRow('Repayment Period', data.term + (data.term === 1 ? ' Month' : ' Months'));
+                addReviewRow('Interest Rate', INTEREST + '% fixed');
+                addReviewRow('Purpose', data.purpose);
+                addReviewRow('Disbursement Number', data.momoNumber);
+
+                var totalRow = document.createElement('div');
+                totalRow.className = 'review-row total';
+
+                var labelEl = document.createElement('span');
+                labelEl.className = 'label';
+                labelEl.textContent = 'Estimated Monthly Payment';
+
+                var valueEl = document.createElement('span');
+                valueEl.className = 'value';
+                valueEl.textContent = money(monthly);
+
+                totalRow.appendChild(labelEl);
+                totalRow.appendChild(valueEl);
+                reviewBox.appendChild(totalRow);
+            }
+
+            /* ---------------------------------------------
+               SUBMIT
+            --------------------------------------------- */
+
+            terms.addEventListener('change', function () {
+                if (terms.checked) {
+                    termsLabel.classList.remove('invalid');
+                    termsError.style.display = 'none';
+                }
+            });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                if (!validateStep(1)) {
+                    goToStep(1);
+                    return;
+                }
+
+                if (!validateStep(2)) {
+                    goToStep(2);
+                    return;
+                }
+
+                if (!terms.checked) {
+                    termsLabel.classList.add('invalid');
+                    termsError.style.display = 'block';
+                    terms.focus();
+                    return;
+                }
+
+                var data = readForm();
+                var total = data.amount + (data.amount * INTEREST / 100);
+
+                data.interest = INTEREST;
+                data.totalRepayable = Number(total.toFixed(2));
+                data.monthlyRepayment = Number((total / data.term).toFixed(2));
+                data.reference = window.Momo.makeReference();
+                data.submittedAt = new Date().toISOString();
+                data.status = 'Submitted';
+
+                window.Momo.merge(data);
+
+                window.location.href = 'thank-you.html';
+            });
+
+            /* ---------------------------------------------
+               PREFILL FROM ELIGIBILITY CHECK
+            --------------------------------------------- */
+
+            if (saved.limit) {
+                limitNoticeText.textContent = 'Based on your eligibility check, your available limit is ' +
+                    money(saved.limit) + '.';
+
+                limitNotice.classList.remove('hidden');
+            }
+
+            ['country', 'fullName', 'phone', 'income', 'employment', 'amount'].forEach(function (key) {
+                var input = field(key);
+
+                if (input && saved[key] !== undefined && saved[key] !== null && saved[key] !== '') {
+                    input.value = saved[key];
+                }
+            });
+
+            if (saved.phone) {
+                field('momoNumber').value = saved.phone;
+            }
+
+            if (saved.term) {
+                field('term').value = saved.term;
+            }
+
+            paintSteps();
+        })();
+    </script>
+
+</body>
+
+</html>

